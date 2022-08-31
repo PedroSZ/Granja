@@ -1,0 +1,17 @@
+Que contiene esta version V_0.1?
+
+Funcionalidad
+Menu principal para desplazarse entre los diferentes apartados
+Base de datos para almacenar registro de empacado
+Tabla de consultas con 1 filtro por producto
+funciones CRUD create, read, update delete
+
+Diseño
+Bootstrap y JS para una mejor UX - UI.
+
+PENDIENTE PARA MAÑANA:
+
+REVISAR QUE A LA HORA DE REGISTRAR UN NUEVO PESO EN TIKET, SE GUARDE LA FECHA POSIBLE SOSPECHA EN EL CODIGO, SI ES DEMACIADO LARGO PUEDE QUE NO SE GUARDE SOSPECHO QUE LA FECHA LA AGARRA DEL BARCODE POR ESO SE ESTIENDE DEMACIADO
+
+PROBLEMA ENCONTRADO, LA CADENA SE HACE DEMACIADO GRANDE AL INSERTAR NUMEROS MUY GRANDES ASI QUE SE OPTA POR REGISTRAR
+PRODUCTOS DE LA FORMA 00003 EN LUGAR DE 24582

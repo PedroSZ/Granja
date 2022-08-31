@@ -1,0 +1,115 @@
+.bg-dark {
+  background-color: #B4CFC8;
+  height: 100px;
+  font-size: 60px;
+}
+
+* {
+    font-size: 15px;
+    font-family: 'Times New Roman';
+}
+
+td,
+th,
+tr,
+table {
+    /*border-top: 1px solid black;*/
+    border-collapse: collapse;
+    text-align: left; /* ALINEAR TEXTOS DE TABLAS */
+}
+
+td.producto,
+th.producto {
+    width: 350px;
+    max-width: 350px;
+}
+
+
+.ticket {
+
+    width: 350px;
+    max-width: 350px;
+}
+
+#encabezado{
+
+  font-size: 17px;
+  font-family: 'Arial black';
+ 
+}
+
+
+#kilos{
+  font-size: 50px;
+  font-family: 'Arial black';
+  font-weight: 'bold';
+  height: 50px;
+  width: 50%;
+  border: 0; 
+  text-align: left;
+}
+#kg{
+  font-size: 50px;
+  font-family: 'Arial black';
+  font-weight: 'bold';
+  height: 50px;
+  width: 50%;
+  border: 0; 
+  text-align: left;
+}
+
+#fechaactual{
+  font-size: 12px;
+  font-family: 'Arial black';
+  font-weight: 'bold';
+  border: 0;
+}
+
+#hora{
+  font-size: 12px;
+  font-family: 'Arial black';
+  font-weight: 'bold';
+  border: 0;
+}
+
+#caducidad{
+  font-size: 12px;
+  font-family: 'Arial black';
+  font-weight: 'bold';
+  border: 0;
+  width: 150px;
+
+}
+
+.selector{
+height: 70px;
+width: auto;
+font-size: calc(1em + 1vw);
+font-family: 'Arial black';
+font-weight: 'bold';
+border: 0;
+
+
+}
+
+.option {
+  font-size: calc(1em + 1vw);
+  font-family: 'Arial black';
+  height: 50px;
+  width: 50px;
+}
+img {
+    max-width: inherit;
+    width: inherit;
+}
+
+.stringCodigoClass{
+  font-size: 17px;
+
+	
+}
+
+.codigo {
+ /* height: 50px;
+  width: 200px;*/
+ }
