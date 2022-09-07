@@ -73,11 +73,14 @@ $fecha = $_POST['fecha'];
                          $producto = new Producto();
                          $productos = $producto->listar();
                          if($productos){
-                           echo "<option value='' class='option' disabled selected>Seleccione:</option>";
-                           foreach ($productos as $producto) {
-                              echo "<option value='".$producto['nombre']."' class='option' class='productoCod'>".$producto['nombre']."</option>";                          
-                         }
-                       }
+                          echo "<option value='' class='option' disabled selected>Seleccione:</option>";
+                          foreach ($productos as $producto) {
+                             echo "<option value='".$producto['nombre']."' class='option' class='productoCod'>".$producto['nombre']."</option>
+                             
+                             ";
+                        }
+                       
+                      }
                        ?>
                                   </select>
                                    <br>

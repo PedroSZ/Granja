@@ -69,15 +69,18 @@ $filtro4 = $_POST['FiltrarPeso'];
 
                                   <select name="FiltrarNombre" type="text" id ="taller" style="height:30px;	width:100px; font-weight: 600; font-size: 14px; border-radius: 10px 10px 10px 10px;">
                                   <?php
-                         include_once 'clases/registro.php';
-                         $regist = new Registro();
-                         $registros = $regist->listar();
-                         if($registros){
-                           echo "<option value='' class='option' disabled selected>Seleccione:</option>";
-                           foreach ($registros as $regist) {
-                              echo "<option value='".$regist['nombre']."' class='option' class='productoCod'>".$regist['nombre']."</option>";                          
-                         }
-                       }
+                         include_once 'clases/producto.php';
+                         $producto = new Producto();
+                         $productos = $producto->listar();
+                         if($productos){
+                          echo "<option value='' class='option' disabled selected>Seleccione:</option>";
+                          foreach ($productos as $producto) {
+                             echo "<option value='".$producto['nombre']."' class='option' class='productoCod'>".$producto['nombre']."</option>
+                             
+                             ";
+                        }
+                       
+                      }
                        ?>
                                   </select>
                                    <br>

@@ -4,7 +4,9 @@
   $filtro1 = $_POST['FiltrarId']; //para obtener el id
   $filtro2 = $_POST['FiltarNombre'];
   $filtro3 = $_POST['FiltarCodigo'];
+  $filtro4 = $_POST['FiltarPeso'];
   /********************************************************/
+ // echo  $filtro4;
 ?>
 <!doctype html>
 <html lang="en">
@@ -65,7 +67,7 @@
   
 </nav>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-    <h3>Eliminar Productos</h3>
+    <h3>Eliminar Registros</h3>
 
 
      
@@ -73,15 +75,33 @@
      
 
   <!--/*********************************FORMULARIO PARA EL FILTRO*****************************************************/ -->
-                     <form method="post" action="ListaParaEliminarProducto.php" name="form_filtro" id="form_filtro" style="align-items: center; background:rgba(0,0,0,0.0);">
+                     <form method="post" action="ListaParaEliminarPesaje.php" name="form_filtro" id="form_filtro" style="align-items: center; background:rgba(0,0,0,0.0);">
                      <table border="0" style="color:#FFFFFF; font-weight: 600; font-size: 17px;">
                      <tr>
                        <td width="50%" style="text-align: right;">
                          <p>
 
                          <input name="FiltrarId" type="text" title="Busqueda por id"  placeholder="Buscar por id del producto" id ="FiltrarId">
-                         <input name="FiltarNombre" type="text" title="Busqueda por nombre del producto ejemplo: CANAL 8"  placeholder="Buscar por por nombre del producto" id ="FiltrarNombre" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" >
-                         <input name="FiltarCodigo" type="text" title="Busqueda por codigo ejemplo: 00015" placeholder="Buscar por codigo del producto" id ="FiltrarCodigo">
+                         
+                         <select name="FiltrarNombre" type="text" id ="taller" style="height:30px;	width:100px; font-weight: 600; font-size: 14px; border-radius: 10px 10px 10px 10px;">
+                                  <?php
+                         include_once 'clases/producto.php';
+                         $producto = new Producto();
+                         $productos = $producto->listar();
+                         if($productos){
+                          echo "<option value='' class='option' disabled selected>Seleccione:</option>";
+                          foreach ($productos as $producto) {
+                             echo "<option value='".$producto['nombre']."' class='option' class='productoCod'>".$producto['nombre']."</option>
+                             
+                             ";
+                        }
+                       
+                      }
+                       ?>
+                                  </select>
+
+                         <input name="FiltarCodigo" type="text" title="Busqueda por codigo ejemplo: 00015" placeholder="Buscar por codigo del pesaje" id ="FiltrarCodigo">
+                         <input name="FiltarPeso" type="text" title="Busqueda por Peso ejemplo: 20.50" placeholder="Buscar por peso registrado" id ="FiltrarPeso">
                              <br>
                              <input type="submit" value="Buscar">
                          </p>
@@ -109,7 +129,7 @@
   <?php
    include_once 'clases/registro.php';
    $registro = new Registro();
-   $registros = $registro->listar();
+   $registros = $registro->listarDecendente();
    if($registros){
     echo "
     <h4>Lista de registros</h4>
@@ -122,11 +142,11 @@
         <th style='text-align:center'>fecha</th>
         <th style='text-align:center'>Acciones</th>
       </tr></thead>";
-      if($filtro1 || $filtro2 || $filtro3){
+      if($filtro1 || $filtro2 || $filtro3 || $filtro4){
         foreach ($registros as $registro) {
         //  if($filtro1 == $alumno['curp'] || $filtro2 == $alumno['nombre'] || $filtro3 == $alumno['apellidos']){
 
-          if($filtro1 == $registro['id'] || $filtro2 == $registro['nombre'] || $filtro3 == $registro['codigo']){
+          if($filtro1 == $registro['id'] || $filtro2 == $registro['nombre'] || $filtro3 == $registro['codigo'] || $filtro4 == $registro['peso']){
             echo "<tr>
             <td>".$registro['id']."</td>
             <td>".$registro['codigo']."</td>

@@ -1,9 +1,9 @@
 <?php
 error_reporting(0);//para que no me muestre errores porque en un principio FiltarCurp no tiene valor por o esta indefinida
 //post del numero de mes para filtrar por mes
-$mesF = $_POST['FiltrarMes'];
+/*$mesF = $_POST['FiltrarMes'];
 $fecha1 = $_POST['fecha1'];
-$fecha2 = $_POST['fecha2'];
+$fecha2 = $_POST['fecha2'];*/
 
 /*echo $fecha1;
 echo $fecha2;*/
@@ -34,6 +34,12 @@ class Registro extends DB {
 		$query->execute();
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
+	//LISTAR REGISTROS EN ORDEN DECENDENTE
+	public function listarDecendente(){
+		$query = $this->connect()->prepare('SELECT * FROM producto INNER JOIN registro ON registro.id_producto = producto.id ORDER BY fecha DESC');
+		$query->execute();
+		return $query->fetchAll(PDO::FETCH_ASSOC);
+	}
 
 	public function listarRegistros(){
 		$query = $this->connect()->prepare('SELECT peso, nombre FROM producto INNER JOIN registro ON registro.id_producto = producto.id');
@@ -57,6 +63,7 @@ class Registro extends DB {
 				$query->execute(['fe' => $mes]);
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
+
 	//LISTA DE REGISTROS DE EMALAJES DEL DIA
 	public function listarInformeDelDia(){
 
@@ -85,6 +92,14 @@ class Registro extends DB {
 	public function eliminar($id){
 		$query = $this->connect()->prepare('DELETE FROM registro WHERE id = :id');
 		$query->execute(['id' => $id]);
+	}
+	//CONSULTAR NOMBRE DE REGISTRO POR CODIGO PASADO MEDIANTE POST
+	
+	public function consultarCodigoActual(){
+
+		$query = $this->connect()->prepare('SELECT id_producto, nombre, peso FROM registro INNER JOIN producto where id_producto = producto.id  ORDER BY registro.id DESC LIMIT 1');
+				$query->execute();
+		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
 }
 

@@ -27,6 +27,7 @@ echo $filtro2;*/
       <link rel="stylesheet" href="estilos/navbarYmenu.css">
       <link rel="stylesheet" href="estilos/tablas.css">
       <script src="scripts/exportarxml.js"></script>
+      <script src="scripts/sumarPesos.js"></script>
   </head>
   <body>
     <nav class="navbar bg-dark">
@@ -120,9 +121,9 @@ echo"
         <th style='text-align:center'>Fecha</th>            
         <th style='text-align:center'>Nombre</th>
         <th style='text-align:center'>Peso</th>                                                                         
-      </tr></thead>";
+      </tr></thead>"; 
 
-      if($filtro2){/* primer si filtro*/
+     if($filtro2){/* primer si filtro*/
       foreach ($registros as $regist) {
        
             if($filtro2 == $regist['nombre'] ){ /*compara filtro con registro*/
@@ -130,7 +131,8 @@ echo"
           <td>".$regist['codigo']."</td>
     <td>".$regist['fecha']."</td>                                     
           <td>".$regist['nombre']."</td>
-          <td>".$regist['peso']."</td>                             
+          <td>".$regist['peso']."  <input type='hidden' class='pesos' value='".$regist['peso']."'></td>  
+
           </tr>";
         }/*cierre compara filtro con registro*/
 
@@ -144,7 +146,7 @@ foreach ($registros as $regist) {/*foreach sin filtrar*/
   <td>".$regist['codigo']."</td>
     <td>".$regist['fecha']."</td>
    <td>".$regist['nombre']."</td>
-    <td>".$regist['peso']."</td>               
+   <td>".$regist['peso']."  <input type='hidden' class='pesos' value='".$regist['peso']."'> </td>                
   </tr>";
 }/*cierrre foreach sin filtrar*/
 }/*cierre else primer si filtro*/
@@ -157,6 +159,10 @@ foreach ($registros as $regist) {/*foreach sin filtrar*/
     echo " <p>No hay datos registrados en la base de datos</p>";
   }/*cierre del else if(taller)*/
    ?>
+
+
+
+
 
 </form>
 

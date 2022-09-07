@@ -81,8 +81,11 @@ th.producto {
 
 }
 
+
+/*AQUI SE HACE LA LETRA MAS GRANDE DEL RANGO*/
+
 .selector{
-height: 70px;
+height: 50px;
 width: auto;
 font-size: calc(1em + 1vw);
 font-family: 'Arial black';
@@ -95,10 +98,12 @@ border: 0;
 .option {
   font-size: calc(1em + 1vw);
   font-family: 'Arial black';
+font-weight: 'bold';
   height: 50px;
   width: 50px;
 }
 img {
+height: 50px;
     max-width: inherit;
     width: inherit;
 }

@@ -17,7 +17,7 @@
   </head>
     <body>
         <div class="ticket">
-          <form method="post"  action="modulos/mdl_registrarEmbalaje.php" id="frm_crear_nuevo_reporte" onsubmit="return validar()">
+          <form method="post"  action="modulos/mdl_registrarEmbalaje.php" id="frm_crear_nuevo_reporte" name="frm_crear_nuevo_tiket" onsubmit="return validar()">
           <input  type="hidden" id="lotehoy" name="lotehoy"></input>
           <table>
                <thead>
@@ -51,31 +51,48 @@
                    <tr>
 
                        <td>
+                        <?php
+                            include_once 'clases/registro.php';
+                            $registro = new Registro();
+                            $registros = $registro->consultarCodigoActual();
+                           if($registros){
+                               foreach ($registros as $registro) {
+                                  // echo $registro['id'];
+                               }
+                           }
+   
+                        ?>
 
                          <select id="productoSelec" name="productoSelec" onchange="ShowSelected()" class="selector">
                          <?php
+                         
                           include_once 'clases/producto.php';
                           $producto = new Producto();
                           $productos = $producto->listar();
                           if($productos){
-                           echo "<option value='' class='option' disabled selected>Seleccione:</option>";
+                           
+                           echo "<option value='".$registro['id_producto']."' class='option' selected>".$registro['nombre']."</option>";
                            foreach ($productos as $producto) {
                               echo "<option value='".$producto['codigo']."' class='option' class='productoCod'>".$producto['nombre']."</option>
                               
                               ";
-                         }
-                        
+                         }  
+                                      
                        }
+
                        ?>
-
-
+                       </select>
+                      
                        </td>
 
                    </tr>
                    <tr>
                    <td class="" id="peso">
-                   <input autofocus type="text" id="kilos" name="kilos" value="" onchange="obterpeso();" placeholder="00.00" ></input><input type="text" id="kg" name="kg" value="KG."></input>
-
+                    <?php
+                    echo"
+                   <input autofocus='focus' type='text' id='kilos' name='kilos' value='".$registro['peso']."' onchange='ShowSelected();' placeholder='00.00' ></input><input type='text' id='kg' name='kg' value='KG.'></input>
+                    ";
+                   ?>
                     </td>
                       
                        
@@ -111,8 +128,8 @@
                </tbody>
 
 <td align="center">
- <input type="submit" value="Registrar"> 
-<input type="button" onClick="location='index.php'" value="Regresar" />
+ <!-- <input type="submit" value="r"> -->
+ <!-- <input type="button" onClick="location='index.php'" value="<" /> -->
 </td >
 <td >
  </td >

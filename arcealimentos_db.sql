@@ -92,4 +92,7 @@ select * from registro INNER JOIN producto where producto.id = registro.id_produ
 
 CONSULTA POR MES Y ID DE PRODUCTO
 select * from registro INNER JOIN producto where producto.id = registro.id_producto AND id_producto = 1 AND MONTH(fecha) = :fe ORDER BY fecha ASC
+
+CONSULTA DE CAMPOS NO REPETIDOS 
+select DISTINCT nombre from registro INNER JOIN producto where producto.id = registro.id_producto AND MONTH(fecha) = :fe  ORDER BY fecha ASC;
 */

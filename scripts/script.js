@@ -45,18 +45,21 @@ window.onload = function(){
 //  JsBarcode("#codigo", addDaysToDate(tmpDate, 10));
 
 
-/*document.addEventListener('keydown', (event) => {
-  if (event.ctrlKey) {
-     if (event.keyCode === 73) {
-         console.log("Enviado");
+document.addEventListener('keydown', (event) => {
+ 
+     if (event.keyCode == 66) {
+      location.href='index.php'
+     }else if (event.keyCode == 13){
+      ShowSelected();
+      document.frm_crear_nuevo_tiket.submit();
      }
-  }
+
+  
 }, false);
 
-*/
 
                           
-
+ShowSelected();
 
 }
 
