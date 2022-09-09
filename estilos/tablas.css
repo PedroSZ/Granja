@@ -7,3 +7,18 @@ table {
   td, th {
     border: black 1px solid;
   }
+
+#tablaFiltroDiv {
+     overflow:scroll;
+     height:auto;
+     width:auto;
+}
+#tablaFiltroDiv #tabFiltro {
+    width:auto;
+    height:auto;
+    background-color:rgb(192, 174, 7);
+}
+#tablaFiltroDiv #tabFiltro tr td {
+  width: 1%;
+  white-space: nowrap;
+}

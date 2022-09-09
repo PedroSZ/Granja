@@ -1,9 +1,22 @@
 <?php
 error_reporting(0);//para que no me muestre errores porque en un principio FiltarCurp no tiene valor por o esta indefinida
-$filtro1 = $_POST['FiltrarMes'];
-$filtro2 = $_POST['FiltrarRango'];
-/*echo $filtro1;
-echo $filtro2;*/
+$filtro = $_POST['FiltrarMes'];
+/*
+include_once 'clases/producto.php';
+$producto = new Producto();
+$productos = $producto->listar();
+$variable = "filtro";
+if($productos){
+  foreach ($productos as $producto) {
+    $cont = $cont +1;
+      $$variable ="filtro"+$cont;   
+      echo $$variable;  
+}
+
+}*/
+
+$filtro2 = $_POST['1'];
+echo $filtro2;
 ?>
 
 <!doctype html>
@@ -14,22 +27,16 @@ echo $filtro2;*/
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AceAlimentos</title>
 
-    <script language='javascript'>
-		/*function consultar(mes, rango) {
-            document.form_filtro.mimes.value = mes;
-            document.form_filtro.mirango.value = rango;
-			alert(mes, rango);
-            document.frm_embalaje.submit();
-		}*/
-        </script>
-
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
       <link rel="stylesheet" href="estilos/navbarYmenu.css">
       <link rel="stylesheet" href="estilos/tablas.css">
       <script src="scripts/exportarxml.js"></script>
       <script src="scripts/sumarPesos.js"></script>
+      <script src="jquery/jquery-3.6.1.js" type="text/javascript"></script>
+      
   </head>
   <body>
+  
     <nav class="navbar bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
@@ -69,44 +76,49 @@ echo"
       <option value='12'>DICIEMBRE</option>
      </select>";?>
 
-<select name="FiltrarRango"  type="text" id ="FiltrarRango" style="height:30px;	width:100px; font-weight: 600; font-size: 14px; border-radius: 10px 10px 10px 10px;">
+
+             
+
+                <div id="tablaFiltroDiv">
+                  <table id="tabFiltro" border="1"> 
+                    <tr>
                                   <?php
+                        echo "";
                          include_once 'clases/producto.php';
                          $producto = new Producto();
                          $productos = $producto->listar();
                          if($productos){
-                           echo "<option value='' class='option' disabled selected>Seleccione:</option>";
+                          
                            foreach ($productos as $producto) {
-                              echo "<option value='".$producto['nombre']."' class='option' class='productoCod'>".$producto['nombre']."</option>";                          
+                              echo "<td>
+                              <label>".$producto['nombre']."<input name='".$producto['id']."' type='checkbox' id='".$producto['id']."' value='".$producto['nombre']."'></label>
+                              </td>";                          
                          }
+                         
                        }
+                       echo " ";
                        ?>
- </select>
- <?php 
- /* esto sirve para enviar dos parametros al script
- echo"
- <input type= 'submit' value='Buscar' onClick='consultar(\"".$filtro1."\" +\"".$filtro2."\");'
- ";
- */
- ?>
+                       </tr>
+                       </table>
+                      </div> 
+                    
+ 
   <input type="submit" value="Buscar">
   <input type="button" onClick="location='reportes.php'" value="Regresar" />
   <button onclick="exportTableToExcel('tableID')">Descargar para excel</button>
 </form>
-
     <!-- FINALIZA FILTRO DE CONSULTAR POR MES -->
-
 
       <!--INICIA CONSULTA-->
       <?php
        echo "
       <form method='post' action='../clases/registro.php' name='frm_embalaje' id='frm_embalaje' >
-      <input type='hidden' id='mimes' name='mimes' value='$filtro1'>
+      <input type='hidden' id='mimes' name='mimes' value='$filtro'>
       <input type='hidden' id='mirango' name='mirango' value='$filtro2'>";
       
   include_once 'clases/registro.php';
   $regist = new Registro();
-  $registros = $regist->listarInformeMensual($filtro1);
+  $registros = $regist->listarInformeMensual($filtro);
 
   if($registros){
     echo "
@@ -151,18 +163,12 @@ foreach ($registros as $regist) {/*foreach sin filtrar*/
 }/*cierrre foreach sin filtrar*/
 }/*cierre else primer si filtro*/
 
-
-
     echo "</table>";
   }/*cierre if(taller)*/
    else{/*else if(taller)*/
     echo " <p>No hay datos registrados en la base de datos</p>";
   }/*cierre del else if(taller)*/
    ?>
-
-
-
-
 
 </form>
 
